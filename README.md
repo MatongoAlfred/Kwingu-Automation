@@ -15,7 +15,7 @@ We have concluded the Phase I of automating the Kwingu Test cases, the high-prio
 ## Running the Tests
 To run the test cases you will either: 
 - Need to directly connect this repo to Jenkins server as a Source Code Management Platform (SCM)
-OR 
+- OR 
 - Install Pycharm IDE, Install Selenium and Chrome Webdriver
 - This repo has all the files you need to run the tests
 
@@ -23,7 +23,7 @@ OR
 If you encounter an issue with the scripts, let's take use of the Issues tab in Git. Add all your issues there with detailed summaries.
 
 ## Contributing
-You have been granted access to the scripts, for any contributions please do a 'Pull Request'. Ensure any changes are maded on the forked code first
+You have been granted access to the scripts, for any contributions please do a 'Pull Request'. Ensure any changes are made on the forked code first
 
 ## License
 Released under @Komaza Tech Team LR2023 Licence
