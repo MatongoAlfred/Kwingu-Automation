@@ -26,7 +26,7 @@ If you encounter an issue with the scripts, let's take use of the Issues tab in 
 You have been granted access to the scripts, for any contributions please do a 'Pull Request'. Ensure any changes are made on the forked code first
 
 ## License
-Released under @Komaza Tech Team LR2023 Licence
+Released under @Komaza Tech Team LR2023 License
 
 ## Credits
 Thanks to the entire Komaza Tech Team for making this a breeze!!!
