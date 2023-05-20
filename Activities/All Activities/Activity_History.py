@@ -81,7 +81,8 @@ time.sleep(3)
 
 # assert that were are on the all activities page
 all_activities_page = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//body/app-root/app-activity-list/div/kendo-grid/kendo-grid-toolbar/span"))
+    EC.presence_of_element_located(
+        (By.XPATH, "//body/app-root/app-activity-list/div/kendo-grid/kendo-grid-toolbar/span"))
 )
 assert all_activities_page.is_displayed()
 
@@ -149,49 +150,52 @@ filter_button_two.click()
 # sleep for 5 seconds
 time.sleep(5)
 
-# Checking the 'external filters'
-external_filter = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//body/app-root/app-activity-list/div/kendo-grid/div/div/div[2]/table/thead/tr/th[2]/kendo-grid-filter-menu/a"))
+# checking if the activity history icon is working as expected
+activity_history = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.XPATH,
+                                    "//body/app-root/app-activity-list/div/kendo-grid/div/kendo-grid-list/div[1]/div[1]/table/tbody/tr[1]/td/span/button/img"))
 )
-external_filter.click()
-
-# sleep for 3 seconds
-time.sleep(3)
-
-# clearing the applied internal filter
-clear_button = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//body/app-root/kendo-popup/div/kendo-grid-filter-menu-container/form/div/app-custom-row-filter/div/div/button[1]"))
-)
-clear_button.click()
+activity_history.click()
 
 # sleep for 3 secs
 time.sleep(3)
 
-# checking the external filter if it works
-external_filter1 = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//body/app-root/app-activity-list/div/kendo-grid/div/div/div[2]/table/thead/tr/th[2]/kendo-grid-filter-menu/a"))
+# ascertain that the activity history pop up window is displayed
+activity_history_window = WebDriverWait(driver, 10).until(
+    EC.text_to_be_present_in_element((By.XPATH,
+                                      "/html/body/app-root/app-activity-list/app-list-view/kendo-dialog/div[2]/kendo-dialog-titlebar/div[1]"),
+                                     "Activity History")
 )
-external_filter1.click()
+# Check if the element has the expected text
+if activity_history_window:
+    print("Test Case passed successfully!!!")
+else:
+    print("Test case working as expected but the text is not available!!!")
 
 # sleep for 3 secs
 time.sleep(3)
 
-# launch pop up here
-external_filter_input = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//body/app-root/kendo-popup/div/kendo-grid-filter-menu-container/form/div/app-custom-row-filter/div/input"))
+# checking if the activity history navigation is working
+# next arrow navigation check
+next_arrow = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.XPATH,
+                                    "//body/app-root/app-activity-list/app-list-view/kendo-dialog/div[2]/div/kendo-listview/kendo-datapager/kendo-datapager-next-buttons/button[1]"))
 )
-external_filter_input.click()
-external_filter_input.clear()
-external_filter_input.send_keys("kwl-2023-0037")
+assert next_arrow.is_displayed()
+next_arrow.click()
 
-# clicking on the filter button
-external_filter_button = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//body/app-root/kendo-popup/div/kendo-grid-filter-menu-container/form/div/app-custom-row-filter/div/div/button[2]"))
+# previous key navigation
+previous_arrow = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.XPATH, "//body/app-root/app-activity-list/app-list-view/kendo-dialog/div[2]/div/kendo-listview/kendo-datapager/kendo-datapager-prev-buttons/button[2]"))
 )
-external_filter_button.click()
+assert previous_arrow.is_displayed()
+previous_arrow.click()
 
-# sleep for 5 seconds
-time.sleep(5)
-
-# Test summary report
-print("Test case successfully executed!!!")
+# checking if the activity history has records displayed
+activity_history_records = WebDriverWait(driver, 10).until(
+    EC.text_to_be_present_in_element((By.XPATH, "//body/app-root/app-activity-list/app-list-view/kendo-dialog/div[2]/div/kendo-listview/kendo-datapager/kendo-datapager-info"), "1 - 6 of 6 items")
+)
+if activity_history_records:
+    print("Test Case passed successfully!!!")
+else:
+    print("Failed test case")
