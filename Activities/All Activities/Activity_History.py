@@ -168,9 +168,9 @@ activity_history_window = WebDriverWait(driver, 10).until(
 )
 # Check if the element has the expected text
 if activity_history_window:
-    print("Test Case passed successfully!!!")
+    print("Activity history is available")
 else:
-    print("Test case working as expected but the text is not available!!!")
+    print("Activity History is missing")
 
 # sleep for 3 secs
 time.sleep(3)
@@ -184,7 +184,7 @@ next_arrow = WebDriverWait(driver, 10).until(
 assert next_arrow.is_displayed()
 next_arrow.click()
 
-# previous key navigation
+# previous key navigation check
 previous_arrow = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.XPATH, "//body/app-root/app-activity-list/app-list-view/kendo-dialog/div[2]/div/kendo-listview/kendo-datapager/kendo-datapager-prev-buttons/button[2]"))
 )
