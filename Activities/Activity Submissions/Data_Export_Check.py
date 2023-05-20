@@ -99,7 +99,7 @@ time.sleep(3)
 # checking if the 'Save' button is available and working as expected
 data_export.click()
 
-# sleep for 3 secs
+# sleep for 3 seconds
 time.sleep(3)
 
 # Clicking the save button
