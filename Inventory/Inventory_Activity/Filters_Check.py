@@ -52,20 +52,20 @@ hamburger_menu_icon.click()
 # Sleep for 5 secs
 time.sleep(5)
 
-# Find and select 'activities' module from the main menu navigation
-activities_module_select = driver.find_element(By.XPATH,
-                                               "//body/app-root/app-header/header/section/section/div/div/ul/li[5]/div/span")
-activities_module_select.click()
+# Find and select 'inventory' module from the main menu navigation
+inventory_module_select = driver.find_element(By.XPATH,
+                                              "//body/app-root/app-header/header/section/section/div/div/ul/li[6]/div/span")
+inventory_module_select.click()
 
 # Sleep for 3 secs
 time.sleep(3)
 
-# select all activities option
-all_activities = WebDriverWait(driver, 10).until(
+# select inventory activity option
+inventory_activity = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located(
-        (By.XPATH, "//body/app-root/app-header/header/section/section/div/div/ul/li[5]/div[2]/li[4]")
+        (By.XPATH, "//body/app-root/app-header/header/section/section/div/div/ul/li[6]/div[2]/li[1]/a")
     ))
-all_activities.click()
+inventory_activity.click()
 
 # sleep for 5 seconds
 time.sleep(5)
@@ -79,11 +79,12 @@ close_side_menu.click()
 # sleep for 3 seconds
 time.sleep(3)
 
-# assert that were are on the all activities page
-all_activities_page = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//body/app-root/app-activity-list/div/kendo-grid/kendo-grid-toolbar/span"))
+# assert that were are on the inventory activity page
+inventory_activity_page = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located(
+        (By.XPATH, "//body/app-root/app-inventory-activities/div/kendo-grid/kendo-grid-toolbar/span"))
 )
-assert all_activities_page.is_displayed()
+assert inventory_activity_page.is_displayed()
 
 # sleep for 3 secs
 time.sleep(3)
@@ -101,7 +102,7 @@ time.sleep(3)
 # clicking on the add filter button
 add_filter_button = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.XPATH,
-                                    "//body/app-root/app-activity-list/div/kendo-grid/kendo-grid-toolbar/app-show-filter/div[1]/div/div/div/div/div/button"))
+                                    "//body/app-root/app-inventory-activities/div/kendo-grid/kendo-grid-toolbar/app-show-filter/div[1]/div/div/div/div/div/button"))
 )
 add_filter_button.click()
 
@@ -121,7 +122,7 @@ time.sleep(3)
 # select and clicking on the shamba kcode option from the list
 wait = WebDriverWait(driver, 10)
 list_element = wait.until(EC.visibility_of_element_located((By.ID, "column-list")))
-item_xpath = "//*[@id='column-list']/li[2]/label"
+item_xpath = "//*[@id='column-list']/li[5]/label"
 item_element = list_element.find_element(By.XPATH, item_xpath)
 item_element.click()
 
@@ -131,7 +132,7 @@ time.sleep(3)
 # entering the kcode we want to filter
 filter_box_input = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.XPATH,
-                                    "//body/app-root/app-activity-list/div/kendo-grid/kendo-grid-toolbar/app-show-filter/div[2]/app-showfilters/div/kendo-popup/div/div/div[2]/app-external-row-filter/div/input")
+                                    "//body/app-root/app-inventory-activities/div/kendo-grid/kendo-grid-toolbar/app-show-filter/div[2]/app-showfilters/div/kendo-popup/div/div/div[2]/app-external-row-filter/div/input")
                                    ))
 filter_box_input.click()
 filter_box_input.send_keys("kwl-2023-0159")
@@ -142,7 +143,7 @@ time.sleep(3)
 # checking and clicking the 'filter' button
 filter_button_two = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.XPATH,
-                                    "//body/app-root/app-activity-list/div/kendo-grid/kendo-grid-toolbar/app-show-filter/div[2]/app-showfilters/div/kendo-popup/div/div/div[2]/app-external-row-filter/div/div/button[2]"))
+                                    "//body/app-root/app-inventory-activities/div/kendo-grid/kendo-grid-toolbar/app-show-filter/div[2]/app-showfilters/div/kendo-popup/div/div/div[2]/app-external-row-filter/div/div[2]/button[2]"))
 )
 filter_button_two.click()
 
@@ -151,7 +152,8 @@ time.sleep(5)
 
 # Checking the 'external filters'
 external_filter = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//body/app-root/app-activity-list/div/kendo-grid/div/div/div[2]/table/thead/tr/th[2]/kendo-grid-filter-menu/a"))
+    EC.presence_of_element_located((By.XPATH,
+                                    "//body/app-root/app-inventory-activities/div/kendo-grid/div/div/div[2]/table/thead/tr/th[5]/kendo-grid-filter-menu/a"))
 )
 external_filter.click()
 
@@ -160,7 +162,8 @@ time.sleep(3)
 
 # clearing the applied internal filter
 clear_button = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//body/app-root/kendo-popup/div/kendo-grid-filter-menu-container/form/div/app-custom-row-filter/div/div/button[1]"))
+    EC.presence_of_element_located((By.XPATH,
+                                    "//body/app-root/kendo-popup/div/kendo-grid-filter-menu-container/form/div/app-custom-row-filter/div/div/button[1]"))
 )
 clear_button.click()
 
@@ -169,7 +172,8 @@ time.sleep(3)
 
 # checking the external filter if it works
 external_filter1 = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//body/app-root/app-activity-list/div/kendo-grid/div/div/div[2]/table/thead/tr/th[2]/kendo-grid-filter-menu/a"))
+    EC.presence_of_element_located((By.XPATH,
+                                    "//body/app-root/app-inventory-activities/div/kendo-grid/div/div/div[2]/table/thead/tr/th[5]/kendo-grid-filter-menu/a"))
 )
 external_filter1.click()
 
@@ -178,15 +182,17 @@ time.sleep(3)
 
 # launch pop up here
 external_filter_input = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//body/app-root/kendo-popup/div/kendo-grid-filter-menu-container/form/div/app-custom-row-filter/div/input"))
+    EC.presence_of_element_located((By.XPATH,
+                                    "//body/app-root/kendo-popup/div/kendo-grid-filter-menu-container/form/div/app-custom-row-filter/div/input"))
 )
 external_filter_input.click()
 external_filter_input.clear()
-external_filter_input.send_keys("kwl-2023-0037")
+external_filter_input.send_keys("kwl-2023-0159")
 
 # clicking on the filter button
 external_filter_button = WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((By.XPATH, "//body/app-root/kendo-popup/div/kendo-grid-filter-menu-container/form/div/app-custom-row-filter/div/div/button[2]"))
+    EC.presence_of_element_located((By.XPATH,
+                                    "//body/app-root/kendo-popup/div/kendo-grid-filter-menu-container/form/div/app-custom-row-filter/div/div/button[2]"))
 )
 external_filter_button.click()
 
