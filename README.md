@@ -15,8 +15,11 @@ We have concluded the Phase I of automating the Kwingu Test cases, the high-prio
 ## Running the Tests
 To run the test cases you will either: 
 - Need to directly connect this repo to Jenkins server as a Source Code Management Platform (SCM)
-- OR 
-- Install Pycharm IDE, Install Selenium and Chrome Webdriver
+  *****************************************
+- Install Pycharm IDE, Install Selenium and Chrome Webdriver and directly run it from a local device
+  *****************************************
+- Fork the scripts ans run the scripts using Colab, it supports headless testing
+  *********************************
 - This repo has all the files you need to run the tests
 
 ## Reporting Issues
